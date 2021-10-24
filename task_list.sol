@@ -28,7 +28,7 @@ contract TaskList {
         numberOfTasks += 1;
     }
 
-    function openTasks() public checkOwnerAndAccept returns (uint) {
+    function openTasks() public view returns (uint) {
         uint count;
         for (uint8 i; i < numberOfTasks; i++) {
             if (task_m[i].completed == false) { count += 1; }
@@ -36,7 +36,7 @@ contract TaskList {
         return count;
     }
 
-    function tasksList() public checkOwnerAndAccept returns (string[]) {
+    function tasksList() public view returns (string[]) {
         string[] tasks;
         for (uint8 i = 0; i < numberOfTasks; i++) {
             tasks.push(task_m[i].name);
@@ -44,7 +44,7 @@ contract TaskList {
         return tasks;
     }
 
-    function getTask(uint8 i) public checkOwnerAndAccept returns (task) {
+    function getTask(uint8 i) public view returns (task) {
         return task_m[i];
     }
 
