@@ -24,6 +24,7 @@ contract TaskList {
 	}
 
     function addTask(string name) public checkOwnerAndAccept {
+        require(!name.empty(), 228);
         task_m[numberOfTasks] = task(now, name, false);
         numberOfTasks += 1;
     }
@@ -45,14 +46,17 @@ contract TaskList {
     }
 
     function getTask(uint8 i) public view returns (task) {
+        require(i < numberOfTasks, 1337);
         return task_m[i];
     }
 
     function deleteTask(uint8 i) public checkOwnerAndAccept {
+        require(i < numberOfTasks, 1337);
         delete task_m[i];
     }
 
     function completeTask(uint8 i) public checkOwnerAndAccept {
+        require(i < numberOfTasks, 1337);
         task_m[i].completed = true;
     }
 }
